@@ -5,6 +5,7 @@
 #include <iostream> // simple cerr
 #include <FL/Enumerations.H> // colors and such
 #include <FL/fl_draw.H>  //line style
+#include <cmath>
 #include <vector>
 
 namespace Graph_lib {
@@ -39,8 +40,8 @@ namespace Graph_lib {
 		enum Line_style_type {
 			solid = FL_SOLID,				// -------
 			dash = FL_DASH,				// - - - -
-			dot = FL_DOT,					// ....... 
-			dashdot = FL_DASHDOT,			// - . - . 
+			dot = FL_DOT,					// .......
+			dashdot = FL_DASHDOT,			// - . - .
 			dashdotdot = FL_DASHDOTDOT,	// -..-..
 		};
 		Line_style(Line_style_type ss) :s(ss), w(0) { }
@@ -154,7 +155,10 @@ namespace Graph_lib {
 		Shape& operator=(const Shape&) = delete;
 	private:
 		std::vector<Point> points;	// not used by all shapes
+		#pragma GCC diagnostic push
+		#pragma GCC diagnostic ignored "-Wnarrowing"
 		Color lcolor{ fl_color() };
+        #pragma GCC diagnostic pop
 		Line_style ls{ 0 };
 		Color fcolor{ Color::invisible };
 
@@ -165,7 +169,7 @@ namespace Graph_lib {
 	struct Function : Shape {
 		// the function parameters are not stored
 		Function(Fct f, double r1, double r2, Point orig, int count = 100, double xscale = 25, double yscale = 25);
-		//Function(Point orig, Fct f, double r1, double r2, int count, double xscale = 1, double yscale = 1);	
+		//Function(Point orig, Fct f, double r1, double r2, int count, double xscale = 1, double yscale = 1);
 	};
 
 	struct Fill {
@@ -301,8 +305,8 @@ namespace Graph_lib {
 		void draw_lines() const;
 
 		Point center() const { return{ point(0).x + w, point(0).y + h }; }
-		Point focus1() const { return{ center().x + int(sqrt(double(w * w - h * h))), center().y }; }
-		Point focus2() const { return{ center().x - int(sqrt(double(w * w - h * h))), center().y }; }
+		Point focus1() const { return{ center().x + int(std::sqrt(double(w * w - h * h))), center().y }; }
+		Point focus2() const { return{ center().x - int(std::sqrt(double(w * w - h * h))), center().y }; }
 
 		void set_major(int ww) { w = ww; }
 		int major() const { return w; }

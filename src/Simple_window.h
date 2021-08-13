@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string> 
-#include <FL/FL.H>
+#include <string>
+#include <FL/Fl.H>
 
 #include "Point.h"
 #include "Gui.h"

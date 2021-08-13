@@ -1,6 +1,6 @@
 #include "Window.h"
-#include "GUI.h"
-#include <FL/Fl.H> 
+#include "Gui.h"
+#include <FL/Fl.H>
 
 namespace Graph_lib {
 
@@ -22,7 +22,7 @@ namespace Graph_lib {
 		show();
 	}
 
-	//---------------------------------------------------- 
+	//----------------------------------------------------
 
 	void Window::draw()
 	{
