@@ -9,7 +9,7 @@ int main()
     const auto smile_size {wind_start.x};
 
 
-    Graph_lib::Simple_window win1  {wind_start,win_size,win_size,"Exercise 19: poly"};
+    Graph_lib::Simple_window win1  {wind_start,win_size,win_size,"Test of Circle"};
 
     Graph_lib::Circle cir {wind_start,smile_size};
     win1.attach(cir);
