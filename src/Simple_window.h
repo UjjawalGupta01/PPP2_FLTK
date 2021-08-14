@@ -10,20 +10,8 @@
 // graphics it provides one window with one "next" button for ultra-simple
 // animation
 namespace Graph_lib {
-void test(auto foo)
-{
-    switch (foo) {
-    case 1: {
-        bar();
-        break;
-    }
-    default: {
-        plop();
-    }
-    }
-}
-constexpr auto next_width {70};    // test1
-constexpr auto next_bottom {20};    // test2
+constexpr auto next_width {70};
+constexpr auto next_bottom {20};
 
 class Simple_window : public Window
 {

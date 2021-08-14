@@ -12,6 +12,8 @@ int main()
                                    "Test of Circle"};
 
     Graph_lib::Circle cir {wind_start, smile_size};
+    cir.set_color(Graph_lib::Color::red);
+    cir.set_fill_color(Graph_lib::Color::blue);
     win1.attach(cir);
 
     win1.wait_for_button();

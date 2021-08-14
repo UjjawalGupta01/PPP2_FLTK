@@ -31,23 +31,27 @@ struct Color {
         dark_magenta = FL_DARK_MAGENTA,
         dark_cyan = FL_DARK_CYAN
     };
-    enum Transparency
+    enum class Transparency
     {
-        invisible = 0,
-        visible = 255
+        invisible,
+        visible
     };
 
-    Color(Color_type cc): c(Fl_Color(cc)), v(visible)
+    Color(Color_type cc): c(Fl_Color(cc))
     {
+        set_visibility(Transparency::visible);
     }
-    Color(Color_type cc, Transparency vv): c(Fl_Color(cc)), v(vv)
+    Color(Color_type cc, Transparency vv): c(Fl_Color(cc))
     {
+        set_visibility(vv);
     }
-    Color(int cc): c(Fl_Color(cc)), v(visible)
+    Color(int cc): c(Fl_Color(cc))
     {
+        set_visibility(Transparency::visible);
     }
-    Color(Transparency vv): c(Fl_Color()), v(vv)
+    Color(Transparency vv): c(Fl_Color())
     {
+        set_visibility(vv);
     }
 
     int as_int() const
@@ -60,7 +64,14 @@ struct Color {
     }
     void set_visibility(Transparency vv)
     {
-        v = vv;
+        switch (vv) {
+        case Transparency::visible:
+            v = 255;
+            break;
+        case Transparency::invisible:
+            v = 0;
+            break;
+        }
     }
 
     private:
@@ -288,7 +299,7 @@ class Shape    // deals with color and style, and holds sequence of lines
     Color lcolor {fl_color()};
 #pragma GCC diagnostic pop
     Line_style ls {0};
-    Color fcolor {Color::invisible};
+    Color fcolor {Color::Transparency::invisible};
 
     //	Shape(const Shape&);
     //	Shape& operator=(const Shape&);
@@ -571,7 +582,7 @@ struct Marked_polyline : Open_polyline {
 struct Marks : Marked_polyline {
     Marks(const std::string& m): Marked_polyline(m)
     {
-        set_color(Color(Color::invisible));
+        set_color(Color(Color::Transparency::invisible));
     }
 };
 

@@ -37,7 +37,7 @@ void Window::draw()
 void Window::attach(Widget& w)
 {
     begin();    // FTLK: begin attaching new Fl_Wigets to this window
-    w.attach(*this);    // let the Widget create its Fl_Wigits
+    w.attach(*this);    // let the Widget create its Fl_Wigets
     end();    // FTLK: stop attaching new Fl_Wigets to this window
 }
 
@@ -51,6 +51,7 @@ void Window::attach(Shape& s)
     shapes.push_back(&s);
     //      s.attached = this;
 }
+
 void Window::detach(Shape& s)
 {
     for (unsigned int i = shapes.size(); 0 < i;
