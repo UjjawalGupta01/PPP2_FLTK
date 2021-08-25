@@ -80,24 +80,46 @@ struct Color {
 };
 
 struct Line_style {
-    enum Line_style_type
+    enum class Line_style_type
     {
-        solid = FL_SOLID,    // -------
-        dash = FL_DASH,    // - - - -
-        dot = FL_DOT,    // .......
-        dashdot = FL_DASHDOT,    // - . - .
-        dashdotdot = FL_DASHDOTDOT,    // -..-..
+        solid,    // -------
+        dash,    // - - - -
+        dot,    // .......
+        dashdot,    // - . - .
+        dashdotdot    // -..-..
     };
-    Line_style(Line_style_type ss): s(ss), w(0)
+    Line_style(Line_style_type ss): w(0)
+    {
+        set_style(ss);
+    }
+    Line_style(Line_style_type ss, int ww): w(ww)
+    {
+        set_style(ss);
+    }
+    Line_style(int ss): s {ss}, w(0)
     {
     }
-    Line_style(Line_style_type lst, int ww): s(lst), w(ww)
+    void set_style(Line_style_type lst)
     {
+        switch (lst) {
+            using enum Line_style_type;
+        case solid:
+            s = FL_SOLID;
+            break;
+        case dash:
+            s = FL_DASH;
+            break;
+        case dot:
+            s = FL_DOT;
+            break;
+        case dashdot:
+            s=FL_DASHDOT;
+            break;
+        case dashdotdot:
+            s=FL_DASHDOT;
+            break;
+        };
     }
-    Line_style(int ss): s(ss), w(0)
-    {
-    }
-
     int width() const
     {
         return w;

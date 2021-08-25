@@ -13,7 +13,8 @@ int main()
 
     Graph_lib::Circle cir {wind_start, smile_size};
     cir.set_color(Graph_lib::Color::red);
-    cir.set_fill_color(Graph_lib::Color::blue);
+    //cir.set_fill_color(Graph_lib::Color::blue);
+    cir.set_style(Graph_lib::Line_style::Line_style_type::dashdotdot);
     win1.attach(cir);
 
     win1.wait_for_button();
