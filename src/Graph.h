@@ -14,35 +14,86 @@ namespace Graph_lib {
 #undef minor
 
 struct Color {
-    enum Color_type
+    enum class Color_type
     {
-        red = FL_RED,
-        blue = FL_BLUE,
-        green = FL_GREEN,
-        yellow = FL_YELLOW,
-        white = FL_WHITE,
-        black = FL_BLACK,
-        magenta = FL_MAGENTA,
-        cyan = FL_CYAN,
-        dark_red = FL_DARK_RED,
-        dark_green = FL_DARK_GREEN,
-        dark_yellow = FL_DARK_YELLOW,
-        dark_blue = FL_DARK_BLUE,
-        dark_magenta = FL_DARK_MAGENTA,
-        dark_cyan = FL_DARK_CYAN
+        red,
+        blue,
+        green,
+        yellow,
+        white,
+        black,
+        magenta,
+        cyan,
+        dark_red,
+        dark_green,
+        dark_yellow,
+        dark_blue,
+        dark_magenta,
+        dark_cyan
     };
+    using enum Color_type;
     enum class Transparency
     {
         invisible,
         visible
     };
-
-    Color(Color_type cc): c(Fl_Color(cc))
+    using enum Transparency;
+    void set_color(Color_type ct)
     {
+        switch (ct) {
+            using enum Color_type;
+        case red:
+            c = FL_RED;
+            break;
+        case blue:
+            c = FL_BLUE;
+            break;
+        case green:
+            c = FL_GREEN;
+            break;
+        case yellow:
+            c = FL_YELLOW;
+            break;
+        case white:
+            c = FL_WHITE;
+            break;
+        case black:
+            c = FL_BLACK;
+            break;
+        case magenta:
+            c = FL_MAGENTA;
+            break;
+        case cyan:
+            c = FL_CYAN;
+            break;
+        case dark_red:
+            c = FL_DARK_RED;
+            break;
+        case dark_green:
+            c = FL_DARK_GREEN;
+            break;
+        case dark_yellow:
+            c = FL_DARK_YELLOW;
+            break;
+        case dark_blue:
+            c = FL_DARK_BLUE;
+            break;
+        case dark_magenta:
+            c = FL_DARK_MAGENTA;
+            break;
+        case dark_cyan:
+            c = FL_DARK_CYAN;
+            break;
+        }
+    }
+    Color(Color_type cc)
+    {
+        set_color(cc);
         set_visibility(Transparency::visible);
     }
-    Color(Color_type cc, Transparency vv): c(Fl_Color(cc))
+    Color(Color_type cc, Transparency vv)
     {
+        set_color(cc);
         set_visibility(vv);
     }
     Color(int cc): c(Fl_Color(cc))
@@ -88,6 +139,7 @@ struct Line_style {
         dashdot,    // - . - .
         dashdotdot    // -..-..
     };
+    using enum Line_style_type;
     Line_style(Line_style_type ss): w(0)
     {
         set_style(ss);
