@@ -113,10 +113,10 @@ struct Line_style {
             s = FL_DOT;
             break;
         case dashdot:
-            s=FL_DASHDOT;
+            s = FL_DASHDOT;
             break;
         case dashdotdot:
-            s=FL_DASHDOT;
+            s = FL_DASHDOT;
             break;
         };
     }
@@ -137,29 +137,84 @@ struct Line_style {
 class Font
 {
     public:
-    enum Font_type
+    enum class Font_type
     {
-        helvetica = FL_HELVETICA,
-        helvetica_bold = FL_HELVETICA_BOLD,
-        helvetica_italic = FL_HELVETICA_ITALIC,
-        helvetica_bold_italic = FL_HELVETICA_BOLD_ITALIC,
-        courier = FL_COURIER,
-        courier_bold = FL_COURIER_BOLD,
-        courier_italic = FL_COURIER_ITALIC,
-        courier_bold_italic = FL_COURIER_BOLD_ITALIC,
-        times = FL_TIMES,
-        times_bold = FL_TIMES_BOLD,
-        times_italic = FL_TIMES_ITALIC,
-        times_bold_italic = FL_TIMES_BOLD_ITALIC,
-        symbol = FL_SYMBOL,
-        screen = FL_SCREEN,
-        screen_bold = FL_SCREEN_BOLD,
-        zapf_dingbats = FL_ZAPF_DINGBATS
+        helvetica,
+        helvetica_bold,
+        helvetica_italic,
+        helvetica_bold_italic,
+        courier,
+        courier_bold,
+        courier_italic,
+        courier_bold_italic,
+        times,
+        times_bold,
+        times_italic,
+        times_bold_italic,
+        symbol,
+        screen,
+        screen_bold,
+        zapf_dingbats
     };
-
-    Font(Font_type ff): f(ff)
+    void set_font(Font_type lst)
     {
+        switch (lst) {
+            using enum Font_type;
+        case helvetica:
+            f = FL_HELVETICA;
+            break;
+        case helvetica_bold:
+            f = FL_HELVETICA_BOLD;
+            break;
+        case helvetica_italic:
+            f = FL_HELVETICA_ITALIC;
+            break;
+        case helvetica_bold_italic:
+            f = FL_HELVETICA_BOLD_ITALIC;
+            break;
+        case courier:
+            f = FL_COURIER;
+            break;
+        case courier_bold:
+            f = FL_COURIER_BOLD;
+            break;
+        case courier_italic:
+            f = FL_COURIER_ITALIC;
+            break;
+        case courier_bold_italic:
+            f = FL_COURIER_BOLD_ITALIC;
+            break;
+        case times:
+            f = FL_TIMES;
+            break;
+        case times_bold:
+            f = FL_TIMES_BOLD;
+            break;
+        case times_italic:
+            f = FL_TIMES_ITALIC;
+            break;
+        case times_bold_italic:
+            f = FL_TIMES_BOLD_ITALIC;
+            break;
+        case symbol:
+            f = FL_SYMBOL;
+            break;
+        case screen:
+            f = FL_SCREEN;
+            break;
+        case screen_bold:
+            f = FL_SCREEN_BOLD;
+            break;
+        case zapf_dingbats:
+            f = FL_ZAPF_DINGBATS;
+            break;
+        };
     }
+    Font(Font_type ff)
+    {
+        set_font(ff);
+    }
+
     Font(int ff): f(ff)
     {
     }
@@ -670,7 +725,8 @@ struct Image : Shape {
 
     private:
     int w, h, cx,
-        cy;    // define "masking box" within image relative to position (cx,cy)
+        cy;    // define "masking box" within image relative to position
+               // (cx,cy)
     Fl_Image* p;
     Text fn;
 };
